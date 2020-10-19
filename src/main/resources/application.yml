@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: ANZWholesaleDemoApp
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:hsqldb:mem:wholesaleAppDB
+    driverClassName: org.hsqldb.jdbc.JDBCDriver
+    username: sa
+    password:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+  jpa:
+    database-platform: com.anz.wholesale.db.AnzCustomH2Dialect
+    show-sql: false
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+
+server:
+  port: 8081
+  session:
+    timeout: 1800
+  error:
+    whitelabel:
+      enabled: false
+    include-stacktrace: always
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore/anz-wholesale.p12
+    key-store-password: password
+    key-alias: anz-wholesale
+
+logging:
+  level:
+    com.anz.wholesale: INFO
+  file: logs/wholesale-app.log
